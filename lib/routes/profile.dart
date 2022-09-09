@@ -21,10 +21,30 @@ class _ProfileState extends State<Profile> {
     Navigator.of(context).pop(word);
   }
 
+  void _showBottomSheet() {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+              height: 200,
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  const Text('This is bottom sheet modal'),
+                  const SizedBox(height: 32),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Close BottomSheet'))
+                ],
+              ));
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(title: const Text('Profile Page')),
         appBar: AppBar(title: Text(widget.screenTitle)),
         body: Container(
           padding: const EdgeInsets.all(16),
@@ -32,10 +52,14 @@ class _ProfileState extends State<Profile> {
             Expanded(
                 child: ListView(
               children: [
-                // const Text('This is Profile Page'),
                 Text(widget.screenDescription),
                 ElevatedButton(
-                    onPressed: _navigateToHome, child: const Text('Go to Home'))
+                    onPressed: _navigateToHome,
+                    child: const Text('Go to Home')),
+                const SizedBox(height: 32),
+                ElevatedButton(
+                    onPressed: _showBottomSheet,
+                    child: const Text('Show BottomSheet Modal'))
               ],
             ))
           ]),
