@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:navigation_basics/classes/screen_arguments.dart';
-import 'routes/home.dart';
-import 'routes/profile.dart';
+
+import 'package:navigation_basics/routes/home.dart';
+import 'package:navigation_basics/routes/profile.dart';
+import 'package:navigation_basics/routes/basic_asynchrony.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const Home(),
         // '/profile': (context) => const Profile(),
+        '/basic-asynchrony': (context) => const BasicAsynchrony(),
       },
 
       // We can also define the routes this way

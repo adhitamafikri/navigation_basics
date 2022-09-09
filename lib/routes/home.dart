@@ -31,6 +31,22 @@ class _HomeState extends State<Home> {
     }
   }
 
+  Future<void> _navigateToBasicAsynchrony(BuildContext context) async {
+    // final result = await Navigator.push(
+    //     context, MaterialPageRoute(builder: (context) => const Profile()));
+
+    /**
+     * Prefer using this `pushNamed` method instead of only `push`
+     * Because we can define the routes just like in vue or react
+     */
+    final result = await Navigator.of(context).pushNamed('/basic-asynchrony');
+
+    if (!mounted) return;
+    if (result != null && result is String) {
+      _showSnackbar(context, result);
+    }
+  }
+
   void _showSnackbar(BuildContext context, String value) {
     SnackBar snackBar = SnackBar(content: Text(value));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -49,9 +65,14 @@ class _HomeState extends State<Home> {
                 child: ListView(
               children: [
                 const Text('This is homepage'),
+                const SizedBox(height: 32),
                 ElevatedButton(
                     onPressed: () => _navigateToProfile(context),
                     child: const Text('Go to Profile')),
+                const SizedBox(height: 32),
+                ElevatedButton(
+                    onPressed: () => _navigateToBasicAsynchrony(context),
+                    child: const Text('Go to Basic Asynchrony')),
               ],
             ))
           ]),
